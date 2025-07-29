@@ -83,15 +83,7 @@ export default function Display() {
               <Link to="/">Submit New Testimonial</Link>
             </Button>
             
-            {testimonials.length > 0 && (
-              <Button 
-                variant="outline" 
-                onClick={handleClearAll}
-                className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
-              >
-                Clear All
-              </Button>
-            )}
+            
           </div>
         </div>
 
