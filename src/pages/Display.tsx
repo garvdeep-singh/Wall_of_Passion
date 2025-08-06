@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import TestimonialCard from '@/components/TestimonialCard';
+// import TestimonialCard from '@/components/TestimonialCard';
+import FlipCard from '@/components/FlipCard';
 import { useToast } from '@/hooks/use-toast';
 
 interface Testimonial {
   id: string;
   name: string;
+  headline: string;
   message: string;
   timestamp: string;
+  photoUrl: string;
 }
 
 export default function Display() {
@@ -106,13 +109,14 @@ export default function Display() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
+            {testimonials.map((testimonial) => (
+              <FlipCard
                 key={testimonial.id}
                 name={testimonial.name}
+                headline={testimonial.headline}
                 message={testimonial.message}
                 timestamp={testimonial.timestamp}
-                index={index}
+                photoUrl={testimonial.photoUrl}
               />
             ))}
           </div>

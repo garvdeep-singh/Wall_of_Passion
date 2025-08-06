@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 interface TestimonialCardProps {
   name: string;
+  headline: string;
   message: string;
   timestamp: string;
   index: number;

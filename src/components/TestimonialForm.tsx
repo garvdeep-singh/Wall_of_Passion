@@ -9,13 +9,17 @@ import { useToast } from '@/hooks/use-toast';
 interface Testimonial {
   id: string;
   name: string;
+  headline: string;
   message: string;
   timestamp: string;
+  photoUrl?: string; // new field
 }
 
 export default function TestimonialForm() {
   const [name, setName] = useState('');
+  const [headline, setHeadline] = useState('');
   const [message, setMessage] = useState('');
+  const [photoUrl, setPhotoUrl] = useState<string | undefined>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -38,8 +42,10 @@ export default function TestimonialForm() {
       const testimonial: Testimonial = {
         id: Date.now().toString(),
         name: name.trim(),
+        headline: headline.trim(),
         message: message.trim(),
         timestamp: new Date().toISOString(),
+        photoUrl, // new field
       };
 
       const existingTestimonials = JSON.parse(localStorage.getItem('testimonials') || '[]');
@@ -66,6 +72,15 @@ export default function TestimonialForm() {
     }
   };
 
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setPhotoUrl(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Card className="w-full max-w-2xl mx-auto bg-gradient-card backdrop-blur-sm shadow-soft border-0">
       <CardHeader className="text-center">
@@ -78,6 +93,7 @@ export default function TestimonialForm() {
       </CardHeader>
       <CardContent className="space-y-6">
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name */}
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium text-foreground">
               Your Name
@@ -92,6 +108,22 @@ export default function TestimonialForm() {
               disabled={isSubmitting}
             />
           </div>
+          {/* Headline */}
+          <div className="space-y-2">
+            <label htmlFor="headline" className="text-sm font-medium text-foreground">
+              Headline
+            </label>
+            <Input
+              id="headline"
+              type="text"
+              placeholder="e.g. Amazing Service!"
+              value={headline}
+              onChange={(e) => setHeadline(e.target.value)}
+              className="w-full transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
+              disabled={isSubmitting}
+            />
+          </div>
+          {/* Message */}
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium text-foreground">
               Your Message
@@ -104,6 +136,23 @@ export default function TestimonialForm() {
               className="w-full min-h-[120px] resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
               disabled={isSubmitting}
             />
+          </div>
+          {/* Photo Upload */}
+          <div className="space-y-2">
+            <label htmlFor="photo" className="text-sm font-medium text-foreground">
+              Upload Photo
+            </label>
+            <input
+              id="photo"
+              type="file"
+              accept="image/*"
+              onChange={handlePhotoChange}
+              className="w-full"
+              disabled={isSubmitting}
+            />
+            {photoUrl && (
+              <img src={photoUrl} alt="Preview" className="h-16 w-16 rounded-full mt-2 object-cover" />
+            )}
           </div>
           <Button
             type="submit"
