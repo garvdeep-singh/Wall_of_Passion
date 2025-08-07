@@ -6,6 +6,7 @@ interface FlipCardProps {
   message: string;
   timestamp: string;
   photoUrl?: string;
+  showHint?: boolean;
 }
 
 function formatDate(dateString: string) {
@@ -19,7 +20,7 @@ function formatDate(dateString: string) {
   });
 }
 
-export default function FlipCard({ name, headline, message, timestamp, photoUrl }: FlipCardProps) {
+export default function FlipCard({ name, headline, message, timestamp, photoUrl, showHint }: FlipCardProps) {
   return (
     <div className="flip-card w-full h-56">
       <div className="flip-card-inner w-full h-full">
@@ -27,9 +28,17 @@ export default function FlipCard({ name, headline, message, timestamp, photoUrl 
         <div className="flip-card-front flex flex-row items-center bg-flipcard rounded-lg shadow-md text-white p-4 h-full">
           <div className="flex-shrink-0 w-2/5 flex justify-center items-center h-full">
             {photoUrl ? (
-              <img src={photoUrl} alt={name} className="h-38 w-38 rounded-full object-cover border-4 border-white shadow" />
+              <img
+                src={photoUrl}
+                alt={name}
+                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow"
+                style={{ minWidth: '6rem', minHeight: '6rem', maxWidth: '6rem', maxHeight: '6rem' }}
+              />
             ) : (
-              <div className="h-20 w-20 rounded-full bg-white/30 flex items-center justify-center text-3xl font-bold">
+              <div
+                className="w-24 h-24 rounded-full bg-white/30 flex items-center justify-center text-3xl font-bold"
+                style={{ minWidth: '6rem', minHeight: '6rem', maxWidth: '6rem', maxHeight: '6rem' }}
+              >
                 {name[0]}
               </div>
             )}
@@ -38,6 +47,11 @@ export default function FlipCard({ name, headline, message, timestamp, photoUrl 
             <div className="text-xl font-bold text-white">{name}</div>
             <div className="text-base font-normal mt-2 text-primary-foreground/80">{headline}</div>
           </div>
+          {showHint && (
+            <span className="absolute bottom-2 right-4 text-white/40 text-xs font-medium select-none pointer-events-none">
+              Hover to flip
+            </span>
+          )}
         </div>
         {/* Back Side */}
         <div className="flip-card-back flex flex-col justify-center items-center bg-white rounded-lg shadow-md text-primary text-base p-4">

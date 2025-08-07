@@ -75,19 +75,12 @@ export default function Display() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Customer Testimonials
+            Passion Stories
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Discover what our amazing customers have to say about their experiences with us.
+            Discover what our amazing colleagues have to say about their experiences with us.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild className="bg-gradient-primary hover:opacity-90 shadow-soft hover:shadow-glow transition-all duration-300">
-              <Link to="/">Submit New Testimonial</Link>
-            </Button>
-            
-            
-          </div>
         </div>
 
         {testimonials.length === 0 ? (
@@ -109,7 +102,7 @@ export default function Display() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, idx) => (
               <FlipCard
                 key={testimonial.id}
                 name={testimonial.name}
@@ -117,6 +110,7 @@ export default function Display() {
                 message={testimonial.message}
                 timestamp={testimonial.timestamp}
                 photoUrl={testimonial.photoUrl}
+                showHint={idx === 0}
               />
             ))}
           </div>

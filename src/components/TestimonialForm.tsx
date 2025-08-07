@@ -111,12 +111,12 @@ export default function TestimonialForm() {
           {/* Headline */}
           <div className="space-y-2">
             <label htmlFor="headline" className="text-sm font-medium text-foreground">
-              Headline
+              Your Headline
             </label>
             <Input
               id="headline"
               type="text"
-              placeholder="e.g. Amazing Service!"
+              placeholder="e.g. Working Professional, Psychology Student, Artist etc."
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               className="w-full transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
@@ -126,11 +126,11 @@ export default function TestimonialForm() {
           {/* Message */}
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium text-foreground">
-              Your Message
+              Your Story
             </label>
             <Textarea
               id="message"
-              placeholder="Tell us about your experience..."
+              placeholder="How has ikipendence helped you in living your passion ?"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full min-h-[120px] resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
