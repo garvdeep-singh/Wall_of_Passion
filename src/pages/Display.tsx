@@ -74,10 +74,10 @@ export default function Display() {
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary/30">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent text-[#6f9262]">
             Passion Stories
           </h1>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg mb-8 max-w-2xl mx-auto text-[#6f9262]">
             Discover what our amazing colleagues have to say about their experiences with us.
           </p>
           
