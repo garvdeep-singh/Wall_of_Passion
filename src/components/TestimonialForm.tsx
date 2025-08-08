@@ -85,7 +85,7 @@ export default function TestimonialForm() {
     <Card className="w-full max-w-2xl mx-auto bg-gradient-card backdrop-blur-sm shadow-soft border-0">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          Share Your Experience
+          Share Your Passion Story
         </CardTitle>
         <CardDescription className="text-lg text-muted-foreground">
           We'd love to hear about your experience. Your feedback helps us improve!
@@ -98,7 +98,7 @@ export default function TestimonialForm() {
             <label htmlFor="name" className="text-sm font-medium text-foreground">
               Your Name
             </label>
-            <Input
+            {/* <Input
               id="name"
               type="text"
               placeholder="Enter your full name"
@@ -106,14 +106,28 @@ export default function TestimonialForm() {
               onChange={(e) => setName(e.target.value)}
               className="w-full transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
               disabled={isSubmitting}
-            />
+            /> */}
+
+            <Input
+  id="name"
+  type="text"
+  placeholder="Enter your full name"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+  maxLength={35}
+  className="w-full transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
+  disabled={isSubmitting}
+/>
+<p className="text-xs text-muted-foreground text-right mt-1">
+  {name.length}/35 characters
+</p>
           </div>
           {/* Headline */}
           <div className="space-y-2">
             <label htmlFor="headline" className="text-sm font-medium text-foreground">
               Your Headline
             </label>
-            <Input
+            {/* <Input
               id="headline"
               type="text"
               placeholder="e.g. Working Professional, Psychology Student, Artist etc."
@@ -121,7 +135,20 @@ export default function TestimonialForm() {
               onChange={(e) => setHeadline(e.target.value)}
               className="w-full transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
               disabled={isSubmitting}
-            />
+            /> */}
+            <Input
+  id="headline"
+  type="text"
+  placeholder="e.g. Working Professional, Psychology Student, Artist etc."
+  value={headline}
+  onChange={(e) => setHeadline(e.target.value)}
+  maxLength={25}
+  className="w-full transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
+  disabled={isSubmitting}
+/>
+<p className="text-xs text-muted-foreground text-right mt-1">
+  {headline.length}/25 characters
+</p>
           </div>
           {/* Message */}
           <div className="space-y-2">
@@ -129,13 +156,17 @@ export default function TestimonialForm() {
               Your Story
             </label>
             <Textarea
-              id="message"
-              placeholder="How has ikipendence helped you in living your passion ?"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="w-full min-h-[120px] resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
-              disabled={isSubmitting}
-            />
+  id="message"
+  placeholder="How has ikipendence helped you in living your passion?"
+  value={message}
+  onChange={(e) => setMessage(e.target.value)}
+  maxLength={400}
+  className="w-full min-h-[120px] resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:shadow-glow"
+  disabled={isSubmitting}
+/>
+<p className="text-xs text-muted-foreground text-right mt-1">
+  {message.length}/400 characters
+</p>
           </div>
           {/* Photo Upload */}
           <div className="space-y-2">
@@ -166,3 +197,7 @@ export default function TestimonialForm() {
     </Card>
   );
 }
+
+
+
+
